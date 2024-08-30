@@ -1,0 +1,15 @@
+http://about.md-notes.space {
+    root * /var/www/about
+    try_files /page.html
+    file_server
+}
+
+http://blog.md-notes.space {
+    reverse_proxy * http://blog
+}
+
+http://app.md-notes.space {
+    reverse_proxy * http://app {
+        header_up X-Remote-Addr {remote}
+    }
+}

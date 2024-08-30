@@ -1,0 +1,8 @@
+[Intro]
+- 最終目標是找到 app.md-notes.space 上的完整、無互動 XSS 利用手法
+- Hint: 包含前端與後端漏洞
+
+[Bot]
+不需要看 code，它只做簡單兩步驟：
+1. 用 admin 登入 app.md-notes.space
+2. 去你給的網址待一秒

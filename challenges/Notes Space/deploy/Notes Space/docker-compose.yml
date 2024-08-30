@@ -1,0 +1,61 @@
+services:
+  blog:
+    image: php:8-apache
+    command: ["bash", "-c", "a2enmod rewrite && apache2-foreground"]
+    volumes:
+      - ./blog:/var/www/html
+    networks:
+      - blog
+  
+
+
+  app:
+    image: php:8-apache
+    command: ["bash", "-c", "php /tmp/init-db.php && apache2-foreground"]
+    volumes:
+      - ./app:/var/www/html
+      - ./notes:/tmp/notes
+      - ./init-db.php:/tmp/init-db.php
+    environment:
+      - FLAG=flag{this_is_a_flag}
+      - ADMIN_PASSWORD=dummy-password
+    networks:
+      - app
+
+  caddy:
+    image: caddy:2
+    ports:
+      - 80:80
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./about/page.html:/var/www/about/page.html
+    networks:
+      - blog
+      - app
+      - caddy
+
+  bot:
+    build:
+      context: ./bot
+    ports:
+      - 8000:8000
+    environment:
+      - TITLE=Admin Bot for Notes Space
+      - PORT=8000
+      - URL_CHECK_REGEX=^https?://.{1,256}$
+      - SITE=http://app.md-notes.space/
+      - USERNAME=admin
+      - PASSWORD=dummy-password
+    networks:
+      - caddy
+    security_opt:
+      - seccomp=./bot/seccomp.json
+
+networks:
+  blog:
+  app:
+  caddy:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16
