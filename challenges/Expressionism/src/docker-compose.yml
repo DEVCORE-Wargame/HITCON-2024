@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    ports:
+      - "18080:8080"
+    environment:
+      FLAG: "DEVCORE{d1d_y0u_kn0w_th1s_b3f0r3}"
+    restart: always
