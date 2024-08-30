@@ -1,0 +1,15 @@
+services:
+  web:
+    image: tomcat:8
+    volumes:
+      - ./web:/usr/local/tomcat/webapps/ROOT:ro
+      - ./flag.txt:/flag.txt:ro
+  waf:
+    build:
+      context: ./waf
+    environment:
+      BACKEND_URL: http://web:8080
+    ports:
+      - "10102:80"
+    depends_on:
+      - web
