@@ -33,6 +33,10 @@ This repository is an archive of HITCON 2024 x DEVCORE Wargame.
     * [Notes Space](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Notes%20Space)
         * 1 point / 1 solves
 
+## Scoreboard
+
+[scoreboard.md](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/scoreboard.md)
+
 ## Homepage Backup
 
 ### INFO
