@@ -4,21 +4,34 @@ This repository is an archive of HITCON 2024 x DEVCORE Wargame.
 
 ## Challenges
 
-### Summaries
+### Summary
 
+* Funny
+    * Welcome
+        * 0 point / 132 solves
+    * I wanna solve challenge, but don't want award
+        * -100 points / 20 solves
 * Difficulty: ★☆☆☆☆
     * [Supercalifragilisticexpialidocious](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Supercalifragilisticexpialidocious)
+        * 1 point / 124 solves
 * Difficulty: ★★☆☆☆
     * [Expressionism](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Expressionism)
+        * 1 point / 56 solves
 * Difficulty: ★★★☆☆
     * [VArchive](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/VArchive)
+        * 1 point / 18 solves
     * [Kurapika](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Kurapika)
+        * 1 point / 7 solves
 * Difficulty: ★★★★☆
     * [Spring](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Spring)
+        * 1 point / 3 solves
     * [Wall..Maria](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Wall..Maria)
+        * 1 point / 16 solves
     * [Wall..Rose](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Wall..Rose)
+        * 0 point / 1 solves
 * Difficulty: ★★★★★★★
     * [Notes Space](https://github.com/DEVCORE-Wargame/HITCON-2024/tree/main/challenges/Notes%20Space)
+        * 1 point / 1 solves
 
 ## Homepage Backup
 
