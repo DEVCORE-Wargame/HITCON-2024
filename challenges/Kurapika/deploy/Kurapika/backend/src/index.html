@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件上傳</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+            margin: 0;
+        }
+        .upload-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+            position: relative;
+        }
+        .upload-container h2 {
+            margin: 0 0 20px;
+        }
+        .upload-container input[type="file"] {
+            display: none;
+        }
+        .upload-label {
+            display: block;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .upload-label:hover {
+            background: #e9e9e9;
+        }
+        .upload-container p {
+            margin: 10px 0 0;
+        }
+        .upload-container button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .upload-container button:hover {
+            background: #45a049;
+        }
+        .drag-over {
+            background: #e9e9e9;
+        }
+        .ship-image {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            opacity: 0.3;
+        }
+        .ship-image-bottom {
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 100px;
+            opacity: 0.3;
+        }
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>上傳您的文件</h2>
+        <form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="upload-label" id="upload-label">
+                拖放文件到此處，或點擊選擇文件
+            </label>
+            <input type="file" id="file-upload" name="file">
+            <p>僅支持單檔上傳</p>
+            <div id="file-name" class="file-name"></div>
+            <button type="submit" id="upload-button">上傳文件</button>
+        </form>
+        <img src="./airship.png" alt="Ship" class="ship-image">
+        <img src="./airship.png" alt="Ship" class="ship-image-bottom">
+    </div>
+
+    <script>
+        const fileUpload = document.getElementById('file-upload');
+        const uploadLabel = document.getElementById('upload-label');
+        const uploadButton = document.getElementById('upload-button');
+        const fileNameDisplay = document.getElementById('file-name');
+        const uploadForm = document.getElementById('upload-form');
+        let fileSelected = false;
+
+        uploadLabel.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadLabel.classList.add('drag-over');
+        });
+
+        uploadLabel.addEventListener('dragleave', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadLabel.classList.remove('drag-over');
+        });
+
+        uploadLabel.addEventListener('drop', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadLabel.classList.remove('drag-over');
+            fileUpload.files = event.dataTransfer.files;
+            updateFileName();
+            fileSelected = true;
+        });
+
+        uploadLabel.addEventListener('click', (event) => {
+            event.stopPropagation();
+            event.preventDefault();
+            if (!fileSelected) {
+                fileUpload.click();
+            }
+        });
+
+        fileUpload.addEventListener('change', () => {
+            updateFileName();
+            fileSelected = true;
+        });
+
+        uploadButton.addEventListener('click', (event) => {
+            if (fileUpload.files.length === 0) {
+                event.preventDefault();
+                alert('請先選擇文件');
+            } else if (fileUpload.files.length > 1) {
+                event.preventDefault();
+                alert('請僅選擇一個文件');
+            }
+        });
+
+        function updateFileName() {
+            if (fileUpload.files.length > 0) {
+                fileNameDisplay.textContent = `選擇的文件: ${fileUpload.files[0].name}`;
+            } else {
+                fileNameDisplay.textContent = '';
+                fileSelected = false;
+            }
+        }
+    </script>
+</body>
+</html>

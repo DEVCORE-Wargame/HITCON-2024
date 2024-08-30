@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: backend
+    restart: unless-stopped
+  waf:
+    build:
+      context: WAF
+    restart: unless-stopped
+    ports:
+      - 28080:8080
+    links:
+      - backend
+    depends_on:
+      - backend
